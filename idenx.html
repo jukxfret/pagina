@@ -1,1 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Mi Gordita ❤️</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins;
+}
+
+body{
+overflow:hidden;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(-45deg,#ff0080,#ff4da6,#ff6ec7,#ff9ad5);
+background-size:400% 400%;
+animation:fondo 10s infinite alternate;
+}
+
+@keyframes fondo{
+
+0%{background-position:left;}
+100%{background-position:right;}
+
+}
+
+.container{
+
+width:90%;
+max-width:700px;
+padding:40px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(15px);
+border-radius:25px;
+text-align:center;
+color:white;
+box-shadow:0 0 50px rgba(255,255,255,.3);
+animation:entrada 2s;
+
+}
+
+@keyframes entrada{
+
+from{
+opacity:0;
+transform:scale(.6);
+}
+
+to{
+opacity:1;
+transform:scale(1);
+}
+
+}
+
+h1{
+
+font-size:45px;
+margin-bottom:20px;
+
+}
+
+p{
+
+font-size:20px;
+line-height:35px;
+
+}
+
+button{
+
+margin:15px;
+padding:15px 35px;
+border:none;
+border-radius:50px;
+font-size:20px;
+cursor:pointer;
+transition:.3s;
+
+}
+
+#abrir{
+
+background:#ff0077;
+color:white;
+
+}
+
+#si{
+
+background:#00d26a;
+color:white;
+display:none;
+
+}
+
+#no{
+
+background:red;
+color:white;
+display:none;
+position:absolute;
+
+}
+
+#respuesta{
+
+margin-top:20px;
+font-size:28px;
+font-weight:bold;
+
+}
+
+.carta{
+
+display:none;
+animation:aparecer 2s;
+
+}
+
+@keyframes aparecer{
+
+from{
+opacity:0;
+transform:translateY(100px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+.corazon{
+
+position:absolute;
+font-size:25px;
+animation:subir linear infinite;
+opacity:.8;
+
+}
+
+@keyframes subir{
+
+from{
+
+transform:translateY(100vh) scale(.5);
+
+}
+
+to{
+
+transform:translateY(-100px) scale(1.5);
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>❤️ Para Mi Gordita ❤️</h1>
+
+<button id="abrir">💌 Abrir Carta</button>
+
+<div class="carta">
+
+<p>
+
+Mi gordita hermosa...
+
+Desde que llegaste a mi vida todo cambió para mejor.
+
+Cada sonrisa tuya ilumina mis días.
+
+Cada abrazo tuyo hace que el mundo desaparezca.
+
+Solo quiero que nunca olvides que eres el amor de mi vida.
+
+No importa lo que pase...
+
+Siempre voy a estar para ti.
+
+Te amo muchísimo.
+
+Más de lo que las palabras pueden explicar.
+
+❤️❤️❤️❤️❤️❤️❤️
+
+</p>
+
+<button id="si">Yo también te amo ❤️</button>
+
+<button id="no">No 😒</button>
+
+<div id="respuesta"></div>
+
+</div>
+
+</div>
+
+<script>
+
+const abrir=document.getElementById("abrir")
+const carta=document.querySelector(".carta")
+const si=document.getElementById("si")
+const no=document.getElementById("no")
+const respuesta=document.getElementById("respuesta")
+
+abrir.onclick=()=>{
+
+carta.style.display="block"
+
+si.style.display="inline-block"
+
+no.style.display="inline-block"
+
+abrir.style.display="none"
+
+}
+
+no.addEventListener("mouseover",()=>{
+
+let x=Math.random()*(window.innerWidth-150)
+
+let y=Math.random()*(window.innerHeight-100)
+
+no.style.left=x+"px"
+
+no.style.top=y+"px"
+
+})
+
+const mensajes=[
+
+"Muchísimo ❤️",
+"Infinito ❤️",
+"Hasta la luna 🌙",
+"Más que ayer 💖",
+"Para siempre 💕"
+
+]
+
+let contador=0
+
+si.onclick=()=>{
+
+respuesta.innerHTML="🥹 Yo también te amo mi gordita hermosa ❤️"
+
+setInterval(()=>{
+
+respuesta.innerHTML=mensajes[contador%mensajes.length]
+
+contador++
+
+},1000)
+
+for(let i=0;i<150;i++){
+
+crearCorazon()
+
+}
+
+}
+
+function crearCorazon(){
+
+let c=document.createElement("div")
+
+c.className="corazon"
+
+c.innerHTML="❤️"
+
+c.style.left=Math.random()*100+"vw"
+
+c.style.animationDuration=(Math.random()*4+3)+"s"
+
+c.style.fontSize=(Math.random()*30+20)+"px"
+
+document.body.appendChild(c)
+
+setTimeout(()=>{
+
+c.remove()
+
+},7000)
+
+}
+
+setInterval(()=>{
+
+crearCorazon()
+
+},300)
+
+</script>
+
+</body>
+</html>
